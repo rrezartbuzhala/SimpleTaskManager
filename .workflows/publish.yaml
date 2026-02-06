@@ -20,7 +20,7 @@ jobs:
           - name: simple-task-manager-api
             image: simple-task-manager-api
             context: ./api
-            dockerfile: ./api/Dockerfile
+            dockerfile: ./api/SimpleTaskManager/Dockerfile
 
     steps:
       - name: Checkout repository
