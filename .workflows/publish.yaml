@@ -19,8 +19,8 @@ jobs:
           # Backend image
           - name: simple-task-manager-api
             image: simple-task-manager-api
-            context: ./api
-            dockerfile: ./api/SimpleTaskManager/Dockerfile
+            context: ./api/SimpleTaskManager/SimpleTaskManager.WebAPI
+            dockerfile: ./api/SimpleTaskManager/SimpleTaskManager.WebAPI/Dockerfile
 
     steps:
       - name: Checkout repository
