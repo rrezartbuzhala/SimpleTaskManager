@@ -11,10 +11,9 @@ jobs:
       matrix:
         include:
           # Frontend image
-          #- name: simple-task-manager-app
-          #  image: simple-task-manager-app
-          #  context: ./app
-          #  dockerfile: ./app/Dockerfile
+          - name: simple-task-manager-app
+            image: simple-task-manager-app
+            context: ./app/simple-task-manager-app
 
           # Backend image
           - name: simple-task-manager-api
