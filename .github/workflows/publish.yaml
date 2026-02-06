@@ -1,4 +1,4 @@
-name: Build & Push FE + API Images (Manual)
+name: Build & Push FE + API Images to Docker Hub
 
 on:
   push:
