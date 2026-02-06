@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "v/nAakF3rbo=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.WebAPI\\SimpleTaskManager.WebAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rrbuz\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.0\\microsoft.aspnetcore.openapi.10.0.0.nupkg.sha512",
+    "C:\\Users\\rrbuz\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\rrbuz\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
