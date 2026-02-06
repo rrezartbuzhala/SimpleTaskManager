@@ -6,16 +6,15 @@ EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["SimpleTaskManager.WebAPI/SimpleTaskManager.WebAPI.csproj", "SimpleTaskManager.WebAPI/"]
-RUN dotnet restore "SimpleTaskManager.WebAPI/SimpleTaskManager.WebAPI.csproj"
+WORKDIR /SimpleTaskManager.WebAPI
+COPY ["SimpleTaskManager.WebAPI.csproj", ""]
+RUN dotnet restore "SimpleTaskManager.WebAPI.csproj"
 COPY . .
-WORKDIR "/src/SimpleTaskManager.WebAPI"
-RUN dotnet build "./SimpleTaskManager.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "SimpleTaskManager.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./SimpleTaskManager.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "SimpleTaskManager.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
