@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 using Microsoft.OpenApi;
 using SimpleTaskManager.WebAPI.Common;
 
-
 namespace SimpleTaskManager.WebAPI;
 
 public class Program

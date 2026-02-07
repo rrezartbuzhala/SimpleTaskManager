@@ -20,7 +20,7 @@ jobs:
           # Backend image
           - name: simple-task-manager-api
             image: simple-task-manager-api
-            context: ./api/SimpleTaskManager/SimpleTaskManager.WebAPI
+            context: ./api/SimpleTaskManager
 
     steps:
       - name: Checkout repository
