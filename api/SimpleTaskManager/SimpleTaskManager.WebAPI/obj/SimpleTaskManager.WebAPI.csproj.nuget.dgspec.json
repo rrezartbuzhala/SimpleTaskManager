@@ -43,6 +43,12 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "MediatR.Contracts": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -59,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\rrbuz\\.dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -87,6 +93,9 @@
             "projectReferences": {
               "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Application.Contracts\\SimpleTaskManager.Application.Contracts.csproj": {
                 "projectPath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Application.Contracts\\SimpleTaskManager.Application.Contracts.csproj"
+              },
+              "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence.Contracts\\SimpleTaskManager.Persistence.Contracts.csproj": {
+                "projectPath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence.Contracts\\SimpleTaskManager.Persistence.Contracts.csproj"
               }
             }
           }
@@ -106,6 +115,16 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.1.1, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[14.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -122,7 +141,179 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\rrbuz\\.dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence.Contracts\\SimpleTaskManager.Persistence.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence.Contracts\\SimpleTaskManager.Persistence.Contracts.csproj",
+        "projectName": "SimpleTaskManager.Persistence.Contracts",
+        "projectPath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence.Contracts\\SimpleTaskManager.Persistence.Contracts.csproj",
+        "packagesPath": "C:\\Users\\rrbuz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\rrbuz\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net10.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net10.0": {
+            "targetAlias": "net10.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net10.0": {
+          "targetAlias": "net10.0",
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence\\SimpleTaskManager.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence\\SimpleTaskManager.Persistence.csproj",
+        "projectName": "SimpleTaskManager.Persistence",
+        "projectPath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence\\SimpleTaskManager.Persistence.csproj",
+        "packagesPath": "C:\\Users\\rrbuz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\rrbuz\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net10.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net10.0": {
+            "targetAlias": "net10.0",
+            "projectReferences": {
+              "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence.Contracts\\SimpleTaskManager.Persistence.Contracts.csproj": {
+                "projectPath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence.Contracts\\SimpleTaskManager.Persistence.Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net10.0": {
+          "targetAlias": "net10.0",
+          "dependencies": {
+            "EntityFramework.Metadata": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -153,6 +344,9 @@
               },
               "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Application\\SimpleTaskManager.Application.csproj": {
                 "projectPath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Application\\SimpleTaskManager.Application.csproj"
+              },
+              "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence\\SimpleTaskManager.Persistence.csproj": {
+                "projectPath": "C:\\Users\\rrbuz\\OneDrive\\Desktop\\SimpleTaskManager\\api\\SimpleTaskManager\\SimpleTaskManager.Persistence\\SimpleTaskManager.Persistence.csproj"
               }
             }
           }
@@ -173,13 +367,39 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.1.1, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[12.1.1, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[14.0.0, )"
             },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.1.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[10.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -205,7 +425,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\rrbuz\\.dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

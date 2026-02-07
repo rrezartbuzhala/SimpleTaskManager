@@ -4,7 +4,7 @@ using ApplicationTaskStatus = SimpleTaskManager.Application.Contracts.Common.Enu
 
 namespace SimpleTaskManager.WebAPI.Contracts.Task;
 
-public class TaskRequest
+public sealed record CreateTaskRequest
 {
     [JsonPropertyName( "title")]
     public string Title { get; set; }

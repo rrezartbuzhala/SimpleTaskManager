@@ -1,6 +1,8 @@
-﻿namespace SimpleTaskManager.Application.Contracts.Task;
+﻿using MediatR;
 
-public sealed record DeleteCommand
+namespace SimpleTaskManager.Application.Contracts.Task;
+
+public sealed record DeleteCommand : IRequest<bool>
 {
     public Guid Id { get; set; }
 }

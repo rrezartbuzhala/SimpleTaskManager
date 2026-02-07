@@ -8,8 +8,17 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="12.1.1" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
         <PackageReference Include="MediatR" Version="14.0.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.2" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.2">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.2" />
     </ItemGroup>
 
@@ -22,6 +31,7 @@
     <ItemGroup>
       <ProjectReference Include="..\SimpleTaskManager.Application.Contracts\SimpleTaskManager.Application.Contracts.csproj" />
       <ProjectReference Include="..\SimpleTaskManager.Application\SimpleTaskManager.Application.csproj" />
+      <ProjectReference Include="..\SimpleTaskManager.Persistence\SimpleTaskManager.Persistence.csproj" />
     </ItemGroup>
 
 </Project>

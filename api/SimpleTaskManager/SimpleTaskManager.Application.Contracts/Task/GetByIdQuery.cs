@@ -1,6 +1,8 @@
-﻿namespace SimpleTaskManager.Application.Contracts.Task;
+﻿using MediatR;
 
-public sealed record GetByIdQuery
+namespace SimpleTaskManager.Application.Contracts.Task;
+
+public sealed record GetByIdQuery : IRequest<GetResponse>
 {
     public Guid Id { get; set; }
 }

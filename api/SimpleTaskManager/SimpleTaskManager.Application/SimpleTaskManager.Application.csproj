@@ -8,6 +8,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SimpleTaskManager.Application.Contracts\SimpleTaskManager.Application.Contracts.csproj" />
+      <ProjectReference Include="..\SimpleTaskManager.Persistence.Contracts\SimpleTaskManager.Persistence.Contracts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="12.1.1" />
+      <PackageReference Include="MediatR" Version="14.0.0" />
     </ItemGroup>
 
 </Project>

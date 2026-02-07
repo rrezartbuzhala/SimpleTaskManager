@@ -1,5 +1,11 @@
 using System.Text.Json.Serialization;
+using FluentValidation;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
+using SimpleTaskManager.Application.Features.Task;
+using SimpleTaskManager.Persistence;
+using SimpleTaskManager.Persistence.Contracts;
 using SimpleTaskManager.WebAPI.Common;
 
 namespace SimpleTaskManager.WebAPI;
@@ -9,14 +15,13 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
-
+        
         builder.Services.AddControllers()
             .AddJsonOptions(o =>
                 o.JsonSerializerOptions.Converters.Add(
                     new JsonStringEnumConverter()));
         
+        // Swagger
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(options =>
         {
@@ -33,15 +38,31 @@ public class Program
                 [new OpenApiSecuritySchemeReference("BasicAuth", document)] = []
             });
         });
-
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+        
         builder.Services.AddOpenApi();
         
+        // Auth filter
         builder.Services.AddScoped<BasicAuthorizationFilter>();
+        
+        // Database
+        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(connectionString)
+        );
+        
+        builder.Services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+        
+        // MediatR and FluentValidation
+        builder.Services.AddMediatR(cfg 
+            => cfg.RegisterServicesFromAssembly(typeof(CreateCommandHandler).Assembly));
+        
+        builder.Services.AddValidatorsFromAssembly(typeof(CreateCommandValidator).Assembly);
+        
+        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        
 
         var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
+        
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
@@ -52,8 +73,7 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
-
+        
         app.MapControllers();
 
         app.Run();

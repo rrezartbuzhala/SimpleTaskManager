@@ -13,7 +13,8 @@ public class BasicAuthorizationFilter : IAuthorizationFilter
     private const string ValidPassword = "password";
 
     public void OnAuthorization(AuthorizationFilterContext context)
-    { if (!context.HttpContext.Request.Headers.TryGetValue(AuthorizationHeader, out var authHeader))
+    { 
+        if (!context.HttpContext.Request.Headers.TryGetValue(AuthorizationHeader, out var authHeader))
         {
             context.Result = new UnauthorizedResult();
             return;
