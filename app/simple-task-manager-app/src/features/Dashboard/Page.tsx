@@ -4,7 +4,7 @@ import './Page.css';
 
 function Dashboard() {
   const [ , setStatusFilterState ] = useState('All');
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const statusFilter = searchParams.get('status') || 'All';
   
