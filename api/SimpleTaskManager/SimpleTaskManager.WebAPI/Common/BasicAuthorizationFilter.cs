@@ -9,6 +9,8 @@ public class BasicAuthorizationFilter : IAuthorizationFilter
     private const string AuthorizationHeader = "Authorization";
     
     //TODO: Move to appsettings.json
+   
+
     private const string ValidUsername = "admin";
     private const string ValidPassword = "passwor";
 

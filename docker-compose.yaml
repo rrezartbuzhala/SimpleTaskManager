@@ -5,25 +5,20 @@ services:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver
     environment:
-      SA_PASSWORD: "ThisIsAStrongPassword123!"
+      SA_PASSWORD: "Str0ng!Pass123"
       ACCEPT_EULA: "Y"
     ports:
-      - "15433:1433"
-    healthcheck:
-      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -Q 'SELECT 1'"]
-      interval: 5s
-      retries: 10
+      - "1433:1433"
 
   backend:
     image: rrezart/simple-task-manager-api:latest
     container_name: backend
     environment:
-      ConnectionStrings__DefaultConnection: "Server=sqlserver,15433;Database=MyDb;User Id=sa;Password=ThisIsAStrongPassword123!;TrustServerCertificate=True;"
-    depends_on:
-      sqlserver:
-        condition: service_healthy
+      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=master;User Id=sa;Password=Str0ng!Pass123;TrustServerCertificate=True;"
     ports:
       - "55000:8080"
+    depends_on:
+      - sqlserver
 
   frontend:
     image: rrezart/simple-task-manager-app:latest
