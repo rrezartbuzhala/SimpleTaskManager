@@ -1,4 +1,3 @@
-
 FROM node:20-alpine AS build
 WORKDIR /app/simple-task-manager-app
 COPY package*.json ./

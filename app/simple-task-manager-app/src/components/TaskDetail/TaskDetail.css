@@ -109,17 +109,7 @@
   border-radius: 6px;
 }
 
-/* Priority colors */
-.priority-low .task-badge { background-color: #a5d6a7; }
-.priority-medium .task-badge { background-color: #fff176; }
-.priority-high .task-badge { background-color: #ff6145; }
 
-/* Status colors */
-.status-todo .task-status-badge { background-color: #2196f3; }
-.status-inprogress .task-status-badge { background-color: #ff9800; }
-.status-done .task-status-badge { background-color: #4caf50; }
-
-/* Select dropdowns for priority and status */
 .priority-select,
 .status-select {
   background-color: #2a2a2a;
@@ -154,17 +144,15 @@
   padding: 8px;
 }
 
-/* Priority select colors based on selected value */
 .priority-select.priority-low { background-color: #a5d6a7; color: #000; border-color: #a5d6a7; }
 .priority-select.priority-medium { background-color: #fff176; color: #000; border-color: #fff176; }
 .priority-select.priority-high { background-color: #ff6145; color: #fff; border-color: #ff6145; }
 
-/* Status select colors based on selected value */
+
 .status-select.status-todo { background-color: #2196f3; color: #fff; border-color: #2196f3; }
 .status-select.status-inprogress { background-color: #ff9800; color: #fff; border-color: #ff9800; }
 .status-select.status-done { background-color: #4caf50; color: #fff; border-color: #4caf50; }
 
-/* Edit input styles */
 .detail-title-input {
   background-color: #2a2a2a;
   color: #f3f4f6;
@@ -206,7 +194,6 @@
   box-shadow: 0 0 0 3px rgba(107, 159, 255, 0.2);
 }
 
-/* Edit pen button */
 .edit-pen-btn {
   background: transparent;
   border: none;

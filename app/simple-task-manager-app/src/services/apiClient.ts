@@ -33,7 +33,6 @@ apiClient.interceptors.response.use(
       } catch (e) {
         console.error('Failed to remove authCreds:', e);
       }
-      // Redirect to app index
       window.location.href = '/';
     }
     return Promise.reject(error);

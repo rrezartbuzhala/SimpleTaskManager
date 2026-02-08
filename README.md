@@ -8,16 +8,23 @@ A simple task manager application with a React frontend and .NET backend.
 
 2. Open a terminal in the project root directory (where `docker-compose.yaml` is located).
 
-3. Run:
+3. Make sure the following ports are free before starting:
+   - **33000** (Frontend)
+   - **55000** (Backend API)
+   - **1433** (SQL Server)
+
+4. Run:
    ```bash
    docker-compose up
    ```
 
-4. Wait for all services to start (this may take a few minutes on first run).
+5. Wait for all services to start (this may take a few minutes on first run).
+   
+   > **Note:** If the backend container fails to start on the first attempt, simply restart it from Docker Desktop or run `docker-compose up` again.
 
-5. Access the application at: **http://localhost:33000**
+6. Access the application at: **http://localhost:33000**
 
-6. Login with the default credentials:
+7. Login with the default credentials:
    - **Username:** `admin`
    - **Password:** `password`
 

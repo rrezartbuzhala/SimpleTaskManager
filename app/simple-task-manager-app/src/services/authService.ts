@@ -1,17 +1,12 @@
 import apiClient from './apiClient';
 
-
-
 function toBase64(str: string) {
-  // Prefer browser btoa with UTF-8 support
   if (typeof window !== 'undefined' && typeof window.btoa === 'function') {
     try {
       return window.btoa(unescape(encodeURIComponent(str)));
     } catch (e) {
-      // fall through
     }
   }
-  // Try accessing Buffer from globalThis
   try {
     const g = (globalThis as any) || {};
     const Buf = g.Buffer;
@@ -19,9 +14,7 @@ function toBase64(str: string) {
       return Buf.from(str).toString('base64');
     }
   } catch (e) {
-    // fall through
   }
-  // Fallback using TextEncoder + btoa if available
   if (typeof TextEncoder !== 'undefined' && typeof window !== 'undefined' && typeof window.btoa === 'function') {
     const uint8 = new TextEncoder().encode(str);
     let binary = '';

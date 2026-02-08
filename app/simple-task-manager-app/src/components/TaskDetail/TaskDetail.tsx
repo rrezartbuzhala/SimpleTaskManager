@@ -11,7 +11,6 @@ interface TaskDetailProps {
   id: string;
 }
 
-
 export default function TaskDetail({ id }: TaskDetailProps) {
   const dispatch = useDispatch<AppDispatch>();
   const reduxTask = useSelector((state: RootState) => state.tasks.items.find(t => t.id === id));
@@ -24,13 +23,11 @@ export default function TaskDetail({ id }: TaskDetailProps) {
   const [descValue, setDescValue] = useState(reduxTask?.description || '');
   const [loading, setLoading] = useState(!reduxTask);
 
-  // Fetch priorities and statuses if not loaded
   useEffect(() => {
     if (priorities.length === 0) dispatch(getPriorities());
     if (statuses.length === 0) dispatch(getStatuses());
   }, [dispatch, priorities.length, statuses.length]);
 
-  // Fetch task from API if not in Redux (e.g., on page refresh)
   useEffect(() => {
     if (!reduxTask && id) {
       setLoading(true);
@@ -77,10 +74,8 @@ export default function TaskDetail({ id }: TaskDetailProps) {
       priority: field === 'priority' ? value : null,
       status: field === 'status' ? value : null,
     };
-    // Send PATCH to backend, then refresh
     try {
       await apiClient.patch(`/tasks/${task.id}`, patchBody);
-      // Refresh task from API
       const res = await apiClient.get(`/tasks/${task.id}`);
       const refreshedTask = res.data;
       setTask(refreshedTask);

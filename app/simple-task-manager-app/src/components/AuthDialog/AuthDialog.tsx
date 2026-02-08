@@ -23,7 +23,6 @@ export default function AuthDialog({ onSuccess }: AuthDialogProps) {
       if (resp.status === 401) {
         setError('Unauthorized');
       } else if (typeof resp.data === 'string' && resp.data.includes('Authorized')) {
-        // Save credentials in localStorage
         saveAuthCreds(resp.hashed);
         onSuccess(resp.header);
       } else {
