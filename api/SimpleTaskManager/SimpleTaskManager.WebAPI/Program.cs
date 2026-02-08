@@ -41,7 +41,7 @@ public class Program
         
         builder.Services.AddOpenApi();
         
-        // Auth filter
+        // Basic auth filter
         builder.Services.AddScoped<BasicAuthorizationFilter>();
         
         // Database
@@ -74,7 +74,7 @@ public class Program
         
         var app = builder.Build();
         
-        //Migration
+        //Migrations
         using (var scope = app.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

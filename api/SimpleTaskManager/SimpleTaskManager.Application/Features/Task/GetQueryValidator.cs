@@ -7,6 +7,8 @@ public class GetQueryValidator : AbstractValidator<GetQuery>
 {
     public GetQueryValidator()
     {
-        RuleFor(x => x.Status).IsInEnum().When(x => x.Status != null);
+        RuleFor(x => x.Status)
+            .IsInEnum()
+            .When(x => x.Status != null);
     }
 }

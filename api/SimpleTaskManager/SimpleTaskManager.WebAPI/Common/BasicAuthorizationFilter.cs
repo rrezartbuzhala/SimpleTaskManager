@@ -1,20 +1,12 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.Configuration;
 
 namespace SimpleTaskManager.WebAPI.Common;
 
-public class BasicAuthorizationFilter : IAuthorizationFilter
+public class BasicAuthorizationFilter(IConfiguration configuration) : IAuthorizationFilter
 {
     private const string AuthorizationHeader = "Authorization";
-
-    private readonly IConfiguration _configuration;
-
-    public BasicAuthorizationFilter(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
 
     public void OnAuthorization(AuthorizationFilterContext context)
     {
@@ -51,8 +43,8 @@ public class BasicAuthorizationFilter : IAuthorizationFilter
             return;
         }
 
-        var configuredUsername = _configuration["BasicAuth:Username"];
-        var configuredPassword = _configuration["BasicAuth:Password"];
+        var configuredUsername = configuration["BasicAuth:Username"];
+        var configuredPassword = configuration["BasicAuth:Password"];
 
         if (string.IsNullOrWhiteSpace(configuredUsername) || string.IsNullOrWhiteSpace(configuredPassword))
         {

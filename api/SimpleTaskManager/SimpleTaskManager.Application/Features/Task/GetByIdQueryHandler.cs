@@ -12,7 +12,8 @@ public class GetByIdQueryHandler(IApplicationDbContext context)
 {
     public async Task<GetResponse> Handle(GetByIdQuery request, CancellationToken cancellationToken)
     {
-        var taskEntity = await context.Tasks.SingleOrDefaultAsync(task => task.Id == request.Id, cancellationToken: cancellationToken);
+        var taskEntity = await context.Tasks.AsNoTracking()
+            .SingleOrDefaultAsync(task => task.Id == request.Id, cancellationToken: cancellationToken);
 
         var response = new GetResponse()
         {

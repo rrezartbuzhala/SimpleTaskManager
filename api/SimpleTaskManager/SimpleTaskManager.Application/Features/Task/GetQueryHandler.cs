@@ -11,7 +11,7 @@ public class GetQueryHandler(IApplicationDbContext context) : IRequestHandler<Ge
 {
     public async Task<IEnumerable<GetResponse>> Handle(GetQuery request, CancellationToken cancellationToken)
     {
-        var query = context.Tasks.AsQueryable();
+        var query = context.Tasks.AsNoTracking().AsQueryable();
         if (request.Status is not null)
         {
             query = query.Where(task => task.Status == request.Status.ToString());

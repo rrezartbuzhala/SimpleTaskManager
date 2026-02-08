@@ -2,7 +2,7 @@
 
 # Wait for backend to be ready
 echo "Waiting for backend to be ready..."
-sleep 10
+sleep 30
 
 API_URL="http://backend:8080"
 BASIC_USER="admin"
