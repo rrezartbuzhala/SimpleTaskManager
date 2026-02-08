@@ -1,0 +1,15 @@
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-top: 60px; /* keep space for fixed filter bar */
+}
+
+/* Small adjustments for responsiveness */
+@media (max-width: 1200px) {
+  .task-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 800px) {
+  .task-grid { grid-template-columns: repeat(2, 1fr); }
+}

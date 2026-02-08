@@ -6,8 +6,8 @@ namespace SimpleTaskManager.WebAPI.Controllers;
 
 [BasicAuthorization]
 [ApiController]
-[Route("priority")]
-public class PriorityController : ControllerBase
+[Route("priorities")]
+public class PrioritiesController : ControllerBase
 {
     
     [HttpGet]

@@ -6,8 +6,8 @@ namespace SimpleTaskManager.WebAPI.Controllers;
 
 [BasicAuthorization]
 [ApiController]
-[Route("task-status")]
-public class TaskStatusController : ControllerBase
+[Route("statuses")]
+public class StatusesController : ControllerBase
 {
     [HttpGet]
     public IActionResult Get()

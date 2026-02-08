@@ -10,7 +10,7 @@ public class BasicAuthorizationFilter : IAuthorizationFilter
     
     //TODO: Move to appsettings.json
     private const string ValidUsername = "admin";
-    private const string ValidPassword = "password";
+    private const string ValidPassword = "passwor";
 
     public void OnAuthorization(AuthorizationFilterContext context)
     { 

@@ -1,0 +1,97 @@
+/* Grid container */
+.task-card-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+/* Card styling - fixed size, badges pinned to top-right */
+.task-card {
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    padding: 16px;
+    padding-bottom: 56px; /* leave space for bottom badges */
+    cursor: pointer;
+    background-color: #2e2e2e;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 220px; /* fixed width */
+    height: 220px; /* fixed height */
+    overflow: hidden;
+}
+
+/* Header */
+.task-card-header {
+    position: static; /* ensure header doesn't create a positioned ancestor */
+    width: 100%;
+    display: block;
+}
+
+/* Put badges visually fixed at the top-right of the card */
+.task-badges {
+    position: absolute;
+    bottom: 12px; /* moved to bottom */
+    right: 12px;
+    display: flex;
+    gap: 6px;
+    z-index: 5;
+}
+
+.task-badge {
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #000;
+}
+
+.task-status-badge {
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Title sits below the pinned badges and truncates with ellipsis */
+.task-card-title {
+    display: block;
+    margin: 8px 8px 4px 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 16px);
+    font-size: 16px;
+    line-height: 1.2;
+    text-align: left; /* ensure left alignment */
+}
+
+/* Rely on native tooltip (title attribute) for full title on hover */
+
+/* Priority colors */
+.priority-low .task-badge { background-color: #a5d6a7; }
+.priority-medium .task-badge { background-color: #fff176; }
+.priority-high .task-badge { background-color: #ffb74d; }
+.priority-critical .task-badge { background-color: #e57373; }
+
+/* Status colors */
+.status-todo .task-status-badge { background-color: #2196f3; }
+.status-inprogress .task-status-badge { background-color: #ff9800; }
+.status-done .task-status-badge { background-color: #4caf50; }
+.status-blocked .task-status-badge { background-color: #f44336; }
+
+.task-description {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 8px;
+    margin-bottom: 4px; /* give small gap before badges area */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* limit description lines */
+    -webkit-box-orient: vertical;
+    text-align: left; /* ensure left alignment */
+}

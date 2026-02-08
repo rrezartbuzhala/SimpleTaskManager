@@ -9,8 +9,8 @@ namespace SimpleTaskManager.WebAPI.Controllers;
 
 [BasicAuthorization]
 [ApiController]
-[Route("task")]
-public class TaskController(IMediator mediator) : ControllerBase
+[Route("tasks")]
+public class TasksController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateTaskRequest request)
