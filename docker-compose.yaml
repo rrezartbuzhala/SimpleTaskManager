@@ -11,19 +11,19 @@ services:
       - "15433:1433"
     healthcheck:
       test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -Q 'SELECT 1'"]
-      interval: 10s
-      retries: 5
+      interval: 5s
+      retries: 10
 
   backend:
     image: rrezart/simple-task-manager-api:latest
     container_name: backend
     environment:
-      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=MyDb;User Id=sa;Password=ThisIsAStrongPassword123!;TrustServerCertificate=True;"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver,15433;Database=MyDb;User Id=sa;Password=ThisIsAStrongPassword123!;TrustServerCertificate=True;"
     depends_on:
       sqlserver:
         condition: service_healthy
     ports:
-      - "55000:80"
+      - "55000:8080"
 
   frontend:
     image: rrezart/simple-task-manager-app:latest
@@ -31,4 +31,7 @@ services:
     environment:
       VITE_API_BASE_URL: "http://localhost:55000"
     ports:
-      - "33000:3000"
+      - "33000:80"
+    command: >
+      /bin/sh -c "echo \"window.env = { VITE_API_BASE_URL: '$$VITE_API_BASE_URL' };\" > /usr/share/nginx/html/env.js
+      && nginx -g 'daemon off;'"

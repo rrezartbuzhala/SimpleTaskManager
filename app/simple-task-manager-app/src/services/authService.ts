@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const AUTH_URL = `${import.meta.env.VITE_API_BASE_URL}/authorization`;
+const AUTH_URL = `${window.env.VITE_API_BASE_URL}/authorization`;
 
 function toBase64(str: string) {
   // Prefer browser btoa with UTF-8 support

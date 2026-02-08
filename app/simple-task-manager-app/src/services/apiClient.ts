@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getStoredAuthHeader } from './authService';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5187';
+const API_BASE =  window.env.VITE_API_BASE_URL;
 
 const apiClient = axios.create({
   baseURL: API_BASE,
