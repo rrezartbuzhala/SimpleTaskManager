@@ -40,17 +40,19 @@ export default function CreateTask({ onCreate, onCancel }: CreateTaskProps) {
     }
   }, [statuses, status]);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const id = Date.now().toString();
     const task = { id, title, description, priority, status };
 
     dispatch(addTask(task));
-    dispatch(createTaskRemote(task));
+    await dispatch(createTaskRemote(task));
 
-    if (onCreate) onCreate(task);
-    if (onCancel) onCancel();
-    else navigate('/');
+    if (onCreate) {
+      onCreate(task);
+    } else {
+      navigate('/');
+    }
   };
 
   const cancel = () => {
@@ -59,42 +61,40 @@ export default function CreateTask({ onCreate, onCancel }: CreateTaskProps) {
   };
 
   return (
-    <div className="create-task" style={{ marginTop: 60 }}>
-      <form onSubmit={submit} className="create-form">
-        <h2>Create Task</h2>
-        <label>Title<input value={title} onChange={e => setTitle(e.target.value)} required /></label>
-        <label>Description<textarea value={description} onChange={e => setDescription(e.target.value)} /></label>
-        <label>Priority
-          <select value={priority} onChange={e => setPriority(e.target.value)}>
+    <div className="create-task dark-task-card">
+      <form onSubmit={submit} className="dark-task-form">
+        
+        <div className="dark-form-group">
+          <label className="dark-form-label" htmlFor="task-title">Title</label>
+          <input id="task-title" className="dark-form-input" value={title} onChange={e => setTitle(e.target.value)} required />
+        </div>
+        <div className="dark-form-group">
+          <label className="dark-form-label" htmlFor="task-desc">Description</label>
+          <textarea id="task-desc" className="dark-form-input" value={description} onChange={e => setDescription(e.target.value)} />
+        </div>
+        <div className="dark-form-group">
+          <label className="dark-form-label" htmlFor="task-priority">Priority</label>
+          <select id="task-priority" className="dark-form-input" value={priority} onChange={e => setPriority(e.target.value)}>
             {Array.isArray(priorities) && priorities.length > 0 ? (
               priorities.map(p => <option key={p} value={p}>{p}</option>)
             ) : (
-              <>
-                <option>Low</option>
-                <option>Medium</option>
-                <option>High</option>
-                <option>Critical</option>
-              </>
+              <option>N/A</option>
             )}
           </select>
-        </label>
-        <label>Status
-          <select value={status} onChange={e => setStatus(e.target.value)}>
+        </div>
+        <div className="dark-form-group">
+          <label className="dark-form-label" htmlFor="task-status">Status</label>
+          <select id="task-status" className="dark-form-input" value={status} onChange={e => setStatus(e.target.value)}>
             {Array.isArray(statuses) && statuses.length > 0 ? (
               statuses.map(s => <option key={s} value={s}>{s}</option>)
             ) : (
-              <>
-                <option>Todo</option>
-                <option>InProgress</option>
-                <option>Done</option>
-                <option>Blocked</option>
-              </>
+              <option>N/A</option>
             )}
           </select>
-        </label>
-        <div className="actions">
-          <button type="button" onClick={cancel}>Cancel</button>
-          <button type="submit">Create</button>
+        </div>
+        <div className="dark-actions">
+          <button type="button" className="dark-btn dark-btn-cancel" onClick={cancel}>Cancel</button>
+          <button type="submit" className="dark-btn dark-btn-create">Create</button>
         </div>
       </form>
     </div>

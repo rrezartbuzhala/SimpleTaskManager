@@ -74,14 +74,12 @@
 /* Priority colors */
 .priority-low .task-badge { background-color: #a5d6a7; }
 .priority-medium .task-badge { background-color: #fff176; }
-.priority-high .task-badge { background-color: #ffb74d; }
-.priority-critical .task-badge { background-color: #e57373; }
+.priority-high .task-badge { background-color: #ff6145; }
 
 /* Status colors */
 .status-todo .task-status-badge { background-color: #2196f3; }
 .status-inprogress .task-status-badge { background-color: #ff9800; }
 .status-done .task-status-badge { background-color: #4caf50; }
-.status-blocked .task-status-badge { background-color: #f44336; }
 
 .task-description {
     font-size: 12px;

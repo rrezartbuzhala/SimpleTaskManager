@@ -22,7 +22,17 @@ const initialState: TasksState = {
   error: null,
 };
 
-export const createTaskRemote = createAsyncThunk('tasks/createRemote', async (task: Task) => {
+// Thunk to fetch all tasks from backend
+export const fetchTasks = createAsyncThunk('tasks/fetchAll', async () => {
+  try {
+    const resp = await apiClient.get('/tasks');
+    return resp.data || [];
+  } catch (err) {
+    return [];
+  }
+});
+
+export const createTaskRemote = createAsyncThunk('tasks/createRemote', async (task: Task, { dispatch }) => {
   try {
     const payload = {
       title: task.title,
@@ -30,7 +40,9 @@ export const createTaskRemote = createAsyncThunk('tasks/createRemote', async (ta
       priority: task.priority,
       status: task.status,
     };
-    const resp = await apiClient.post('/tasks', payload, { validateStatus: () => true });
+    const resp = await apiClient.post('/tasks', payload);
+    // After creating, fetch the updated list
+    await dispatch(fetchTasks());
     return resp.data || task;
   } catch (err) {
     return task;
@@ -50,6 +62,18 @@ const tasksSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchTasks.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTasks.fulfilled, (state, action: PayloadAction<Task[]>) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchTasks.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error?.message || 'Failed to fetch tasks';
+      })
       .addCase(createTaskRemote.pending, (state) => {
         state.loading = true;
         state.error = null;

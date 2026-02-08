@@ -11,17 +11,23 @@ services:
       - "1433:1433"
 
   backend:
-    image: rrezart/simple-task-manager-api:latest
+    build:
+      context: ./api/SimpleTaskManager
+      dockerfile: Dockerfile
     container_name: backend
     environment:
       ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=master;User Id=sa;Password=Str0ng!Pass123;TrustServerCertificate=True;"
+      BasicAuth__Username: "admin"
+      BasicAuth__Password: "password"
     ports:
       - "55000:8080"
     depends_on:
       - sqlserver
 
   frontend:
-    image: rrezart/simple-task-manager-app:latest
+    build:
+      context: ./app/simple-task-manager-app
+      dockerfile: Dockerfile
     container_name: frontend
     environment:
       VITE_API_BASE_URL: "http://localhost:55000"
@@ -29,3 +35,12 @@ services:
       - "33000:80"
     command: >
       /bin/sh -c "echo \"window.env = { VITE_API_BASE_URL: '$$VITE_API_BASE_URL' };\" > /usr/share/nginx/html/env.js && ls -l /usr/share/nginx/html && nginx -g 'daemon off;'"
+
+  seeder:
+    image: curlimages/curl:latest
+    container_name: seeder
+    volumes:
+      - ./seed-data.sh:/seed-data.sh:ro
+    entrypoint: ["/bin/sh", "/seed-data.sh"]
+    depends_on:
+      - backend

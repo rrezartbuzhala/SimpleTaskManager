@@ -1,21 +1,23 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Configuration;
 
 namespace SimpleTaskManager.WebAPI.Common;
 
 public class BasicAuthorizationFilter : IAuthorizationFilter
 {
     private const string AuthorizationHeader = "Authorization";
-    
-    //TODO: Move to appsettings.json
-   
 
-    private const string ValidUsername = "admin";
-    private const string ValidPassword = "passwor";
+    private readonly IConfiguration _configuration;
+
+    public BasicAuthorizationFilter(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
 
     public void OnAuthorization(AuthorizationFilterContext context)
-    { 
+    {
         if (!context.HttpContext.Request.Headers.TryGetValue(AuthorizationHeader, out var authHeader))
         {
             context.Result = new UnauthorizedResult();
@@ -49,10 +51,20 @@ public class BasicAuthorizationFilter : IAuthorizationFilter
             return;
         }
 
+        var configuredUsername = _configuration["BasicAuth:Username"];
+        var configuredPassword = _configuration["BasicAuth:Password"];
+
+        if (string.IsNullOrWhiteSpace(configuredUsername) || string.IsNullOrWhiteSpace(configuredPassword))
+        {
+            context.Result = new UnauthorizedResult();
+            return;
+        }
+
         var username = parts[0];
         var password = parts[1];
 
-        if (username != ValidUsername || password != ValidPassword)
+        if (!string.Equals(username, configuredUsername, StringComparison.Ordinal) ||
+            !string.Equals(password, configuredPassword, StringComparison.Ordinal))
         {
             context.Result = new UnauthorizedResult();
         }

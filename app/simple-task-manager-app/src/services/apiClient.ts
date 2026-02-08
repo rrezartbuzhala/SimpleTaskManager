@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getStoredAuthHeader } from './authService';
 
-const API_BASE =  window.env.VITE_API_BASE_URL;
+const API_BASE =  window.env?.VITE_API_BASE_URL ?? import.meta.env.VITE_API_BASE_URL;
 
 const apiClient = axios.create({
   baseURL: API_BASE,
@@ -23,14 +23,18 @@ apiClient.interceptors.request.use((config) => {
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    console.log('Interceptor caught error:', error);
+    console.log('Error status:', error.response?.status);
+    
+    if (error.response && error.response.status === 401) {
       try {
-        if (typeof window !== 'undefined') {
-          localStorage.removeItem('authCreds');
-        }
+        localStorage.removeItem('authCreds');
+        console.log('authCreds removed from localStorage');
       } catch (e) {
-        // ignore
+        console.error('Failed to remove authCreds:', e);
       }
+      // Redirect to app index
+      window.location.href = '/';
     }
     return Promise.reject(error);
   }

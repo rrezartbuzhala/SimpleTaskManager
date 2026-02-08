@@ -1,6 +1,8 @@
 import './Tasks.css';
 import TaskCard from '../TaskCard/TaskCard';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchTasks } from '../../store/slices/tasksSlice';
 import type { RootState } from '../../store/store';
 
 interface TasksProps {
@@ -9,8 +11,15 @@ interface TasksProps {
 }
 
 export default function Tasks({ statusFilter, onSelect }: TasksProps) {
+  const dispatch = useDispatch();
   const tasks = useSelector((state: RootState) => state.tasks.items);
-  const filteredTasks = statusFilter === 'All' ? tasks : tasks.filter(t => t.status === statusFilter);
+  // Filter out tasks without valid id, then filter by status
+  const validTasks = tasks.filter(t => t && t.id);
+  const filteredTasks = statusFilter === 'All' ? validTasks : validTasks.filter(t => t.status === statusFilter);
+
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
 
   return (
     <div className="task-grid">

@@ -1,6 +1,6 @@
-import axios from 'axios';
+import apiClient from './apiClient';
 
-const AUTH_URL = `${window.env.VITE_API_BASE_URL}/authorization`;
+
 
 function toBase64(str: string) {
   // Prefer browser btoa with UTF-8 support
@@ -36,9 +36,9 @@ export async function authenticate(username: string, password: string) {
   const hashed = toBase64(raw);
   const header = `Basic ${hashed}`;
 
-  const resp = await axios.get(AUTH_URL, {
-    headers: { Authorization: header },
-    validateStatus: () => true,
+
+  const resp = await apiClient.get('/authorization', {
+    headers: { Authorization: header }
   });
 
   return {
