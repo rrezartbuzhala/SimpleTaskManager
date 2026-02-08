@@ -13,9 +13,10 @@ interface TasksProps {
 export default function Tasks({ statusFilter, onSelect }: TasksProps) {
   const dispatch = useDispatch();
   const tasks = useSelector((state: RootState) => state.tasks.items);
-  // Filter out tasks without valid id, then filter by status
   const validTasks = tasks.filter(t => t && t.id);
-  const filteredTasks = statusFilter === 'All' ? validTasks : validTasks.filter(t => t.status === statusFilter);
+  const filteredTasks = (statusFilter === 'All' ? validTasks : validTasks.filter(t => t.status === statusFilter))
+    .slice()
+    .sort((a, b) => b.id.localeCompare(a.id));
 
   useEffect(() => {
     dispatch(fetchTasks());
