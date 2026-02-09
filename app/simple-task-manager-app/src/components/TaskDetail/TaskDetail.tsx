@@ -1,9 +1,10 @@
 import './TaskDetail.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { RootState, AppDispatch } from '../../store/store';
 import apiClient from '../../services/apiClient';
-import { addTask } from '../../store/slices/tasksSlice';
+import { addTask, removeTask } from '../../store/slices/tasksSlice';
 import { getPriorities } from '../../store/slices/prioritiesSlice';
 import { getStatuses } from '../../store/slices/statusesSlice';
 
@@ -13,6 +14,7 @@ interface TaskDetailProps {
 
 export default function TaskDetail({ id }: TaskDetailProps) {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const reduxTask = useSelector((state: RootState) => state.tasks.items.find(t => t.id === id));
   const priorities = useSelector((state: RootState) => state.priorities.items);
   const statuses = useSelector((state: RootState) => state.statuses.items);
@@ -191,6 +193,31 @@ export default function TaskDetail({ id }: TaskDetailProps) {
             
           </>
         )}
+      </div>
+      <div className="delete-section">
+        <button
+          className="delete-btn"
+          title="Delete task"
+          onClick={async () => {
+            const confirmed = window.confirm('Are you sure you want to delete this task?');
+            if (confirmed) {
+              try {
+                await apiClient.delete(`/tasks/${task.id}`);
+                dispatch(removeTask(task.id));
+                navigate('/');
+              } catch (e) {
+                console.error('Failed to delete task:', e);
+              }
+            }
+          }}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            <line x1="10" y1="11" x2="10" y2="17"/>
+            <line x1="14" y1="11" x2="14" y2="17"/>
+          </svg>
+        </button>
       </div>
     </div>
   );
