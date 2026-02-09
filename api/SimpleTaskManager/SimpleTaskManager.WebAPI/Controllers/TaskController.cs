@@ -61,7 +61,7 @@ public class TasksController(IMediator mediator) : ControllerBase
 
         var appResponse = await mediator.Send(query);
         
-        if (appResponse.Title == null) return NotFound();
+        if (appResponse.Id == Guid.Empty) return NotFound();
 
         var response = new TaskResponse()
         {
